@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+	<title>Quick View Advanced Example</title>
+	<link rel="icon" href="images/favicon.png" type="image/x-icon">
+	<link href="css/quick-view.css" rel="stylesheet" type="text/css">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+
+	<div class="container">
+
+		<ul class="items">
+			<li data-id="item-1">
+				<a class="quick-view-link">Quick View 1</a>
+			</li>
+			<li data-id="item-2">
+				<a class="quick-view-link">Quick View 2</a>
+			</li>
+			<li data-id="item-3">
+				<a class="quick-view-link">Quick View 3</a>
+			</li>
+		</ul>
+
+	</div>
+
+	<!-- This is where we append our handlebars template -->
+	<div id="quick-view-popup"></div>
+
+	<!-- Background Overlay for popup -->
+	<div id="quick-view-overlay"></div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="scripts/handlebars-v4.0.5.js"></script>
+	<script src="scripts/quick-view.js"></script>
+	<script src="scripts/item-data.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<div class="qv-left">
+	<div class="main-image-wrapper">
+
+		{{#each images}}
+
+			<div class="image{{applyCurrentImage @index}}" data-position="{{@index}}">
+				<img src="images/{{this.large}}" alt="{{name}}">
+			</div>
+
+		{{/each}}
+
+	</div>
+	<div class="zoom-cta">Click thumbnail images below.</div>
+	<ul class="thumbnails">
+
+		{{#each images}}
+
+			<li data-position="{{@index}}"><img src="images/{{this.small}}" alt="{{this.name}}"></li>
+
+		{{/each}}
+
+	</ul>
+	</div>
+	<div class="qv-right">
+	<h2 class="name">{{name}}</h2>
+	<div class="description">{{description}}</div>
+	<div class="pricing">
+		<div class="reg-price">List Price: <span>${{regPrice}}</span></div>
+		<div class="sale-price">Sale Price: ${{salePrice}}</div>
+	</div>
+	<div class="form-fields">
+		<form method="post" action="http://order.store.yahoo.net/storeid/cgi-bin/wg-order?storeid">
+
+			{{#each options}}
+
+				<div class="row">
+					<div class="left">
+						<label>{{this.name}}:</label>
+					</div>
+					<div class="right">
+						<select name="{{this.name}}">
+							{{#each values}}
+								<option value="{{this.value}}">{{this.value}}</option>
+							{{/each}}
+						</select>
+					</div>
+				</div>
+
+			{{/each}}
+
+			<div class="row">
+				<div class="left">
+					<label>Quantity:</label>
+				</div>
+				<div class="right">
+					<input type="number" name="vwquantity" value="1" class="qv-qty">
+				</div>
+			</div>
+			<div class="row">
+				<div class="right">
+					<button type="submit" class="qv-atc">Add to Cart</button>
+				</div>
+			</div>
+			<input name="vwitem" type="hidden" value="{{id}}">
+			<input name="vwcatalog" type="hidden" value="storeid">
+		</form>
+	</div>
+</div>
+
+<a class="qv-close"><i class="fa fa-close"></i></a>
+
+</div>

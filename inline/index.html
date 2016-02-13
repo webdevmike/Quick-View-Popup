@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+	<title>Quick View Advanced Example</title>
+	<link rel="icon" href="images/favicon.png" type="image/x-icon">
+	<link href="css/quick-view.css" rel="stylesheet" type="text/css">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+
+	<div class="container">
+
+		<ul class="items">
+			<li data-id="item-1">
+				<a class="quick-view-link">Quick View 1</a>
+			</li>
+			<li data-id="item-2">
+				<a class="quick-view-link">Quick View 2</a>
+			</li>
+			<li data-id="item-3">
+				<a class="quick-view-link">Quick View 3</a>
+			</li>
+		</ul>
+
+	</div>
+
+	<!-- This is where we append our handlebars template -->
+	<div id="quick-view-popup"></div>
+
+	<!-- Background Overlay for popup -->
+	<div id="quick-view-overlay"></div>
+
+	<script id="qv-popup-template" type="text/x-handlebars-template">
+		<div class="qv-left">
+			<div class="main-image-wrapper">
+
+				{{#each images}}
+
+					<div class="image{{applyCurrentImage @index}}" data-position="{{@index}}">
+						<img src="images/{{this.large}}" alt="{{name}}">
+					</div>
+
+				{{/each}}
+
+			</div>
+			<div class="zoom-cta">Click thumbnail images below.</div>
+			<ul class="thumbnails">
+
+				{{#each images}}
+
+					<li data-position="{{@index}}"><img src="images/{{this.small}}" alt="{{this.name}}"></li>
+
+				{{/each}}
+
+			</ul>
+			</div>
+			<div class="qv-right">
+			<h2 class="name">{{name}}</h2>
+			<div class="description">{{description}}</div>
+			<div class="pricing">
+				<div class="reg-price">List Price: <span>${{regPrice}}</span></div>
+				<div class="sale-price">Sale Price: ${{salePrice}}</div>
+			</div>
+			<div class="form-fields">
+				<form method="post" action="http://order.store.yahoo.net/storeid/cgi-bin/wg-order?storeid">
+
+					{{#each options}}
+
+						<div class="row">
+							<div class="left">
+								<label>{{this.name}}:</label>
+							</div>
+							<div class="right">
+								<select name="{{this.name}}">
+									{{#each values}}
+										<option value="{{this.value}}">{{this.value}}</option>
+									{{/each}}
+								</select>
+							</div>
+						</div>
+
+					{{/each}}
+
+					<div class="row">
+						<div class="left">
+							<label>Quantity:</label>
+						</div>
+						<div class="right">
+							<input type="number" name="vwquantity" value="1" class="qv-qty">
+						</div>
+					</div>
+					<div class="row">
+						<div class="right">
+							<button type="submit" class="qv-atc">Add to Cart</button>
+						</div>
+					</div>
+					<input name="vwitem" type="hidden" value="{{id}}">
+					<input name="vwcatalog" type="hidden" value="storeid">
+				</form>
+			</div>
+		</div>
+
+		<a class="qv-close"><i class="fa fa-close"></i></a>
+
+		</div>
+	</script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="scripts/handlebars-v4.0.5.js"></script>
+	<script src="scripts/quick-view.js"></script>
+	<script src="scripts/item-data.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			quickView.go();
+		});
+	</script>
+
+</body>
+</html>
